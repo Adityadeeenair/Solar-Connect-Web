@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SURYASETU - Marketplace</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.98/build/spline-viewer.js"></script>
+  <style>
+    .spline-wrapper {
+      width: 100%;
+      max-width: 700px;
+      height: 400px;
+      margin: 2rem auto 3rem;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 0 40px rgba(255, 123, 213, 0.6);
+    }
+
+    .spline-wrapper spline-viewer {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">SURYASETU</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="#">How It Works</a>
+      <a href="marketplace.html" class="active">Marketplace</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <div class="spline-wrapper">
+    <spline-viewer url="https://prod.spline.design/vB5QkNVuVZmoqbxh/scene.splinecode"></spline-viewer>
+  </div>
+
+  <main class="marketplace-container">
+    <h1>Solar Energy Marketplace</h1>
+    <p>Buy or sell excess solar energy efficiently and transparently.</p>
+
+    <div class="cards-grid">
+      <div class="card">
+        <h2>Seller: Solar Solutions Ltd.</h2>
+        <p><strong>Energy Amount:</strong> 100 kWh</p>
+        <p><strong>Price:</strong> ₹5000</p>
+        <button class="btn-glow buy-btn">Buy Now</button>
+      </div>
+
+      <div class="card">
+        <h2>Seller: GreenSun Traders</h2>
+        <p><strong>Energy Amount:</strong> 250 kWh</p>
+        <p><strong>Price:</strong> ₹11,200</p>
+        <button class="btn-glow buy-btn">Buy Now</button>
+      </div>
+
+      <div class="card">
+        <h2>Seller: Solar Energy Hub</h2>
+        <p><strong>Energy Amount:</strong> 75 kWh</p>
+        <p><strong>Price:</strong> ₹3800</p>
+        <button class="btn-glow buy-btn">Buy Now</button>
+      </div>
+
+      <div class="card">
+        <h2>Seller: SunPower Exchange</h2>
+        <p><strong>Energy Amount:</strong> 150 kWh</p>
+        <p><strong>Price:</strong> ₹7200</p>
+        <button class="btn-glow buy-btn">Buy Now</button>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 SURYASETU. Powered by solar energy & innovation.</p>
+  </footer>
+</body>
+</html>
