@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login - Surya the Trader</title>
+  <link rel="stylesheet" href="stylelogin.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header>
+    <div class="logo">Surya the Trader</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="marketplace.html">Marketplace</a>
+      <a href="login.html" class="active">Login</a>
+    </nav>
+  </header>
+
+  <main class="login-wrapper">
+    <div class="login-card">
+      <h2>Login</h2>
+      <form onsubmit="event.preventDefault(); window.location.href='marketplace.html';">
+        <label for="username">Username</label>
+        <input type="text" id="username" required />
+
+        <label for="password">Password</label>
+        <input type="password" id="password" required />
+
+        <button type="submit" class="btn-glow">Login</button>
+      </form>
+
+      <p class="signup-text">Don't have an account? <a href="#">Sign up</a></p>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Surya the Trader. Powered by solar energy & innovation.</p>
+  </footer>
+</body>
+</html>
