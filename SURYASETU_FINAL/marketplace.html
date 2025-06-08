@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Marketplace - Suryasetu</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="stylemarketplace.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header>
+    <div class="logo">Suryasetu</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="marketplace.html" class="active">Marketplace</a>
+      <a href="store.html">Battery Store</a> <!-- Added Battery Store link here -->
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
+
+  <main class="marketplace-main">
+    <h1>Solar Energy Marketplace</h1>
+    <p>Buy and sell solar energy units across various states.</p>
+
+    <div class="graph-section">
+      <h2>Live Price Trends</h2>
+      <canvas id="priceChart"></canvas>
+    </div>
+
+    <div class="market-section">
+      <!-- Card for each solar company -->
+      <div class="price-card" data-company="Waaree Energies Ltd." data-buy-price="5.10" data-sell-price="4.95">
+        <h2>Waaree Energies Ltd.</h2>
+        <p>Current Buy Price: ₹5.10/unit</p>
+        <p>Current Sell Price: ₹4.95/unit</p>
+
+        <div class="order-form">
+          <label>Buy Units at Price ₹≥ 5.10:</label><br />
+          <input type="number" min="5.10" step="0.01" placeholder="Enter buy price" class="buy-price" />
+          <input type="number" min="1" step="1" placeholder="Quantity" class="buy-qty" />
+          <button class="btn buy-btn" onclick="placeOrder(this, 'buy')">Place Buy</button>
+        </div>
+
+        <div class="order-form">
+          <label>Sell Units at Price ₹≤ 4.95:</label><br />
+          <input type="number" max="4.95" step="0.01" placeholder="Enter sell price" class="sell-price" />
+          <input type="number" min="1" step="1" placeholder="Quantity" class="sell-qty" />
+          <button class="btn sell-btn" onclick="placeOrder(this, 'sell')">Place Sell</button>
+        </div>
+
+        <div class="orders-log"></div>
+      </div>
+
+      <!-- Repeat cards for other companies -->
+      <div class="price-card" data-company="Selco Solar" data-buy-price="5.30" data-sell-price="5.15">
+        <h2>Selco Solar</h2>
+        <p>Current Buy Price: ₹5.30/unit</p>
+        <p>Current Sell Price: ₹5.15/unit</p>
+
+        <div class="order-form">
+          <label>Buy Units at Price ₹≥ 5.30:</label><br />
+          <input type="number" min="5.30" step="0.01" placeholder="Enter buy price" class="buy-price" />
+          <input type="number" min="1" step="1" placeholder="Quantity" class="buy-qty" />
+          <button class="btn buy-btn" onclick="placeOrder(this, 'buy')">Place Buy</button>
+        </div>
+
+        <div class="order-form">
+          <label>Sell Units at Price ₹≤ 5.15:</label><br />
+          <input type="number" max="5.15" step="0.01" placeholder="Enter sell price" class="sell-price" />
+          <input type="number" min="1" step="1" placeholder="Quantity" class="sell-qty" />
+          <button class="btn sell-btn" onclick="placeOrder(this, 'sell')">Place Sell</button>
+        </div>
+
+        <div class="orders-log"></div>
+      </div>
+
+      <div class="price-card" data-company="Swelect Energy Systems" data-buy-price="5.50" data-sell-price="5.35">
+        <h2>Swelect Energy Systems</h2>
+        <p>Current Buy Price: ₹5.50/unit</p>
+        <p>Current Sell Price: ₹5.35/unit</p>
+
+        <div class="order-form">
+          <label>Buy Units at Price ₹≥ 5.50:</label><br />
+          <input type="number" min="5.50" step="0.01" placeholder="Enter buy price" class="buy-price" />
+          <input type="number" min="1" step="1" placeholder="Quantity" class="buy-qty" />
+          <button class="btn buy-btn" onclick="placeOrder(this, 'buy')">Place Buy</button>
+        </div>
+
+        <div class="order-form">
+          <label>Sell Units at Price ₹≤ 5.35:</label><br />
+          <input type="number" max="5.35" step="0.01" placeholder="Enter sell price" class="sell-price" />
+          <input type="number" min="1" step="1" placeholder="Quantity" class="sell-qty" />
+          <button class="btn sell-btn" onclick="placeOrder(this, 'sell')">Place Sell</button>
+        </div>
+
+        <div class="orders-log"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Suryasetu. Powered by solar energy & innovation.</p>
+  </footer>
+
+  <script>
+    const ctx = document.getElementById("priceChart").getContext("2d");
+
+    const priceChart = new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: ["10:00", "11:00", "12:00", "1:00", "2:00", "3:00", "4:00"],
+        datasets: [
+          {
+            label: "Waaree Energies Ltd.",
+            data: [4.9, 5.0, 5.05, 5.1, 5.15, 5.12, 5.1],
+            borderColor: "#34d399",
+            tension: 0.3,
+          },
+          {
+            label: "Selco Solar",
+            data: [5.1, 5.15, 5.2, 5.25, 5.3, 5.28, 5.3],
+            borderColor: "#8b5cf6",
+            tension: 0.3,
+          },
+          {
+            label: "Swelect Energy Systems",
+            data: [5.2, 5.3, 5.4, 5.45, 5.5, 5.48, 5.5],
+            borderColor: "#f87171",
+            tension: 0.3,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            labels: {
+              color: "#ffffff",
+            },
+          },
+        },
+        scales: {
+          x: {
+            ticks: { color: "#aaa" },
+            grid: { color: "#333" },
+          },
+          y: {
+            ticks: { color: "#aaa" },
+            grid: { color: "#333" },
+          },
+        },
+      },
+    });
+
+    function placeOrder(button, type) {
+      const card = button.closest(".price-card");
+      const company = card.getAttribute("data-company");
+      const buyPriceLimit = parseFloat(card.getAttribute("data-buy-price"));
+      const sellPriceLimit = parseFloat(card.getAttribute("data-sell-price"));
+
+      let priceInput, qtyInput;
+
+      if (type === "buy") {
+        priceInput = card.querySelector(".buy-price");
+        qtyInput = card.querySelector(".buy-qty");
+        const price = parseFloat(priceInput.value);
+        const qty = parseInt(qtyInput.value);
+
+        if (isNaN(price) || isNaN(qty) || qty <= 0) {
+          alert("Please enter valid buy price and quantity.");
+          return;
+        }
+        if (price < buyPriceLimit) {
+          alert(`Buy price must be at least ₹${buyPriceLimit.toFixed(2)} or higher.`);
+          return;
+        }
+
+        // Add order to log
+        addOrderLog(card, type, price, qty);
+
+        // Clear inputs
+        priceInput.value = "";
+        qtyInput.value = "";
+
+      } else if (type === "sell") {
+        priceInput = card.querySelector(".sell-price");
+        qtyInput = card.querySelector(".sell-qty");
+        const price = parseFloat(priceInput.value);
+        const qty = parseInt(qtyInput.value);
+
+        if (isNaN(price) || isNaN(qty) || qty <= 0) {
+          alert("Please enter valid sell price and quantity.");
+          return;
+        }
+        if (price > sellPriceLimit) {
+          alert(`Sell price must be at most ₹${sellPriceLimit.toFixed(2)} or lower.`);
+          return;
+        }
+
+        // Add order to log
+        addOrderLog(card, type, price, qty);
+
+        // Clear inputs
+        priceInput.value = "";
+        qtyInput.value = "";
+      }
+    }
+
+    function addOrderLog(card, type, price, qty) {
+      const logDiv = card.querySelector(".orders-log");
+      const orderTypeText = type === "buy" ? "Buy" : "Sell";
+      const color = type === "buy" ? "#34d399" : "#f87171";
+
+      const orderEntry = document.createElement("div");
+      orderEntry.style.color = color;
+      orderEntry.style.marginTop = "0.5rem";
+      orderEntry.textContent = `${orderTypeText} Order: ${qty} units @ ₹${price.toFixed(2)}`;
+
+      logDiv.prepend(orderEntry);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+:root {
+  --neon-pink: #ff7bd5;
+  --glass-bg: rgba(255, 255, 255, 0.06);
+  --text-light: #ffffff;
+  --header-footer-bg: #121318;
+}
+
+.store-main {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+  text-align: center;
+  color: var(--text-light);
+}
+
+.store-main h1 {
+  font-size: 3rem;
+  color: var(--neon-pink);
+  text-shadow: 0 0 25px rgba(255, 123, 213, 0.8);
+  margin-bottom: 0.5rem;
+}
+
+.store-main p {
+  font-size: 1.3rem;
+  margin-bottom: 3rem;
+  color: #eee;
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
+  line-height: 1.4;
+}
+
+.store-grid {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.product-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  box-shadow: 0 0 35px rgba(255, 123, 213, 0.3);
+  padding: 1.5rem;
+  width: 260px;
+  color: var(--text-light);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 55px rgba(255, 123, 213, 0.6);
+}
+
+.product-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
+.product-card h2 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: var(--neon-pink);
+}
+
+.product-card p {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.btn-glow {
+  background: var(--neon-pink);
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(255, 123, 213, 0.6);
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.btn-glow:hover {
+  transform: scale(1.05);
+  background: #ff4ec0;
+}
