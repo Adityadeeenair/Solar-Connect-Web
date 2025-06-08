@@ -8,6 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
   <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.98/build/spline-viewer.js"></script>
   <link rel="icon" type="image/png" href="favicon.png">
+
   <style>
     :root {
       --neon-pink: #ff7bd5;
@@ -23,8 +24,7 @@
       box-sizing: border-box;
     }
 
-    body,
-    html {
+    body, html {
       height: 100%;
       width: 100%;
       font-family: "Orbitron", sans-serif;
@@ -124,7 +124,6 @@
       padding: 4rem 3rem;
       box-shadow: 0 0 40px rgba(255, 123, 213, 0.5);
       text-align: left;
-      color: var(--text-light);
       margin-left: 4rem;
       display: flex;
       flex-direction: column;
@@ -160,7 +159,6 @@
       display: inline-block;
       transition: background 0.3s ease, transform 0.2s ease;
       width: fit-content;
-      user-select: none;
     }
 
     .btn-glow:hover,
@@ -182,64 +180,81 @@
       margin-top: 2rem;
     }
 
+    /* Setubot Updated Styles */
     .chatbot-container {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      width: 300px;
-      background: var(--glass-bg);
+      width: 320px;
+      background: rgba(255, 255, 255, 0.08);
       backdrop-filter: blur(15px);
       border-radius: 15px;
-      box-shadow: 0 0 30px rgba(255, 123, 213, 0.4);
-      font-family: "Orbitron", sans-serif;
-      color: var(--text-light);
-      z-index: 1000;
+      box-shadow: 0 0 20px rgba(255, 123, 213, 0.4);
       overflow: hidden;
+      z-index: 999;
+      font-size: 14px;
+      display: flex;
+      flex-direction: column;
     }
 
     .chat-header {
-      background-color: var(--neon-pink);
+      background-color: #ff7bd5;
       color: #000;
-      padding: 12px;
+      padding: 10px;
       font-weight: bold;
-      text-align: center;
       cursor: pointer;
-      user-select: none;
-      font-size: 1rem;
+      text-align: center;
     }
 
     .chat-body {
       display: none;
-      padding: 10px;
-      max-height: 300px;
-      display: flex;
       flex-direction: column;
-      gap: 10px;
+      height: 350px;
+      padding: 10px;
     }
 
-    #chat-log {
-      flex-grow: 1;
+    .chat-log {
+      flex: 1;
       overflow-y: auto;
-      max-height: 200px;
-      padding-right: 5px;
-      font-size: 0.9rem;
+      margin-bottom: 10px;
     }
 
     .chat-message {
-      background: rgba(255, 255, 255, 0.05);
+      margin-bottom: 10px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .chat-message.user {
+      flex-direction: row-reverse;
+    }
+
+    .chat-message .avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .chat-message .text {
+      background: rgba(255, 255, 255, 0.06);
+      padding: 8px 12px;
       border-radius: 10px;
-      padding: 8px;
-      margin-bottom: 6px;
+      max-width: 80%;
       word-wrap: break-word;
     }
 
     #chat-input {
       border: none;
       padding: 10px;
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.08);
-      color: white;
-      font-size: 0.9rem;
+      border-radius: 8px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+
+    #chat-input:focus {
       outline: none;
     }
   </style>
@@ -257,33 +272,24 @@
 
   <div class="hero-wrapper">
     <div class="hero-left">
-      <spline-viewer
-        url="https://prod.spline.design/lipEWRIbPe1q46Vt/scene.splinecode"
-        class="bg-robot"
-      ></spline-viewer>
+      <spline-viewer url="https://prod.spline.design/lipEWRIbPe1q46Vt/scene.splinecode" class="bg-robot"></spline-viewer>
     </div>
-
     <div class="hero-right">
       <h1>Suryasetu</h1>
       <p>Trade excess solar energy with AI-powered automation.</p>
       <div class="hero-buttons">
-        <a href="marketplace.html" class="btn-glow" target="_self">Launch Marketplace</a>
-        <a href="store.html" class="btn-glow secondary-btn" target="_self">Visit Battery Store</a>
+        <a href="marketplace.html" class="btn-glow">Launch Marketplace</a>
+        <a href="store.html" class="btn-glow secondary-btn">Visit Battery Store</a>
       </div>
     </div>
   </div>
 
-  <!-- Chatbot -->
-  <div class="chatbot-container" id="chatbot">
-    <div class="chat-header" onclick="toggleChat()">Ask Setubot</div>
+  <!-- Setubot Chat -->
+  <div class="chatbot-container">
+    <div class="chat-header" onclick="toggleChat()">Ask Setu bot</div>
     <div class="chat-body" id="chat-body">
       <div class="chat-log" id="chat-log"></div>
-      <input
-        type="text"
-        id="chat-input"
-        placeholder="Ask something..."
-        onkeydown="handleKey(event)"
-      />
+      <input type="text" id="chat-input" placeholder="Ask something..." onkeydown="handleKey(event)" />
     </div>
   </div>
 
@@ -293,49 +299,76 @@
 
   <script>
     const responses = {
-  "hello": "Hello! I'm Setu bot, your solar assistant ☀️",
-  "hi": "Hi there! How can I help you with solar trading today?",
-  "what is suryasetu": "Suryasetu is a platform to trade excess solar energy using AI-powered automation.",
-  "how to sell energy": "Just register and list your surplus solar units on the marketplace!",
-  "how to buy energy": "Browse the marketplace and purchase available solar energy from nearby sellers.",
-  "what is marketplace": "The marketplace is a digital platform where users can buy and sell surplus solar energy.",
-  "what is battery store": "You can visit the Battery Store from the main navigation to explore storage options.",
-  "who are you": "I'm Setu bot, the virtual assistant of the Suryasetu platform ☀️",
-  "help": "You can ask me basic questions like how to buy/sell energy or what Suryasetu is!",
-  "Is there a limit to how much energy i can sell": "No, you can sell as much energy as you generate and list on the marketplace.",
-  "how does suryasetu benefit users": "Suryasetu allows users to trade surplus solar energy, providing a way to monetize excess energy and promote renewable energy use.",
-  "is it safe": "Yes, all transactions are secured, and energy trades are verified before completion."
-};
+      hello: "Hi there! I'm Setu bot, your solar assistant ☀️",
+      hi: "Hello! Ask me anything about solar energy.",
+      login: "To login, click the button in the top right!",
+      marketplace: "Visit the marketplace to buy or sell solar energy.",
+      battery: "Our store has top-notch solar battery solutions!",
+      suryasetu: "Suryasetu is a solar energy marketplace platform.",
+      energy: "Energy can be traded here if you have surplus.",
+      trade: "Click on 'Marketplace' to start trading your energy!",
+      buy: "You can buy energy from listed sellers in the marketplace.",
+      sell: "List your extra solar power in the marketplace easily."
+    };
+
+    const fallbackReplies = [
+      "Hmm... I'm not sure about that. 🤔",
+      "Try asking something related to solar energy!",
+      "My brain is solar-powered... and still learning 🌞",
+      "Sorry, I didn’t understand that. Try rephrasing.",
+      "I'll note that down for future updates!"
+    ];
+
+    const BOT_AVATAR = "https://cdn-icons-png.flaticon.com/512/4712/4712106.png";
+    const USER_AVATAR = "https://cdn-icons-png.flaticon.com/512/3135/3135715.png";
 
     function toggleChat() {
-      const body = document.getElementById("chat-body");
-      body.style.display = body.style.display === "flex" ? "none" : "flex";
+      const chatBody = document.getElementById("chat-body");
+      chatBody.style.display = chatBody.style.display === "flex" ? "none" : "flex";
     }
 
     function handleKey(event) {
       if (event.key === "Enter") {
         const input = document.getElementById("chat-input");
-        const message = input.value.trim().toLowerCase();
-        if (message) {
-          addMessage("You", message);
-          respond(message);
+        const message = input.value.trim();
+        if (message !== "") {
+          addMessage("user", message);
+          respondToUser(message.toLowerCase());
           input.value = "";
         }
       }
     }
 
-    function addMessage(sender, message) {
+    function addMessage(sender, text) {
       const log = document.getElementById("chat-log");
-      const div = document.createElement("div");
-      div.className = "chat-message";
-      div.innerHTML = `<strong>${sender}:</strong> ${message}`;
-      log.appendChild(div);
+      const msg = document.createElement("div");
+      msg.className = `chat-message ${sender}`;
+
+      const avatar = document.createElement("img");
+      avatar.className = "avatar";
+      avatar.src = sender === "user" ? USER_AVATAR : BOT_AVATAR;
+
+      const bubble = document.createElement("div");
+      bubble.className = "text";
+      bubble.innerText = text;
+
+      msg.appendChild(avatar);
+      msg.appendChild(bubble);
+      log.appendChild(msg);
       log.scrollTop = log.scrollHeight;
     }
 
-    function respond(message) {
-      const reply = responses[message] || "Sorry, this feature is under development. 🚧";
-      setTimeout(() => addMessage("Setubot", reply), 400);
+    function respondToUser(message) {
+      let reply = fallbackReplies[Math.floor(Math.random() * fallbackReplies.length)];
+      for (let key in responses) {
+        if (message.includes(key)) {
+          reply = responses[key];
+          break;
+        }
+      }
+      setTimeout(() => {
+        addMessage("bot", reply);
+      }, 500);
     }
   </script>
 </body>
