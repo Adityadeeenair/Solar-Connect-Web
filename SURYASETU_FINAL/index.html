@@ -7,6 +7,242 @@
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
   <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.98/build/spline-viewer.js"></script>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <style>
+    :root {
+      --neon-pink: #ff7bd5;
+      --neon-purple: #8b5cf6;
+      --glass-bg: rgba(255, 255, 255, 0.06);
+      --text-light: #ffffff;
+      --header-footer-bg: #121318;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body,
+    html {
+      height: 100%;
+      width: 100%;
+      font-family: "Orbitron", sans-serif;
+      background: #0d0d10;
+      color: var(--text-light);
+      overflow-x: hidden;
+    }
+
+    header {
+      background: var(--header-footer-bg);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 3rem;
+      box-shadow: 0 0 30px rgba(255, 123, 213, 0.3);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.7rem;
+      color: var(--neon-pink);
+      text-shadow: 0 0 10px rgba(255, 123, 213, 0.7);
+      cursor: default;
+      letter-spacing: 1.5px;
+    }
+
+    nav a {
+      color: var(--text-light);
+      text-decoration: none;
+      margin-left: 2rem;
+      font-weight: 600;
+      font-size: 1.05rem;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    nav a:hover,
+    nav a:focus {
+      color: var(--neon-pink);
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0%;
+      height: 2px;
+      background: var(--neon-pink);
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after,
+    nav a:focus::after {
+      width: 100%;
+    }
+
+    .hero-wrapper {
+      display: flex;
+      height: calc(100vh - 72px);
+      width: 100vw;
+      align-items: center;
+      justify-content: center;
+      gap: 4rem;
+      padding: 0 5rem;
+    }
+
+    .hero-left {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      max-width: 650px;
+      padding-left: 3rem;
+    }
+
+    .bg-robot {
+      width: 100%;
+      max-width: 500px;
+      height: 100%;
+      max-height: 500px;
+      border-radius: 20px;
+      box-shadow: 0 0 60px rgba(255, 123, 213, 0.8);
+      object-fit: contain;
+    }
+
+    .hero-right {
+      flex: 1;
+      max-width: 600px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border-radius: 20px;
+      padding: 4rem 3rem;
+      box-shadow: 0 0 40px rgba(255, 123, 213, 0.5);
+      text-align: left;
+      color: var(--text-light);
+      margin-left: 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 80%;
+    }
+
+    .hero-right h1 {
+      font-size: 3.5rem;
+      color: var(--neon-pink);
+      text-shadow: 0 0 25px #ff7bd5cc;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-right p {
+      font-size: 1.3rem;
+      margin-bottom: 3rem;
+      color: #eee;
+      text-shadow: 0 0 12px rgba(255, 255, 255, 0.25);
+      line-height: 1.5;
+    }
+
+    .btn-glow {
+      background: var(--neon-purple);
+      color: #fff;
+      padding: 1.1rem 3rem;
+      border: none;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1.15rem;
+      box-shadow: 0 0 25px rgba(139, 92, 246, 0.9);
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.3s ease, transform 0.2s ease;
+      width: fit-content;
+      user-select: none;
+    }
+
+    .btn-glow:hover,
+    .btn-glow:focus {
+      background: #a78bfa;
+      transform: scale(1.07);
+      outline: none;
+    }
+
+    footer {
+      background: var(--header-footer-bg);
+      text-align: center;
+      padding: 1.5rem 2rem;
+      font-size: 1rem;
+      color: #bbb;
+      box-shadow: 0 -4px 30px rgba(255, 123, 213, 0.3);
+      letter-spacing: 0.8px;
+      user-select: none;
+      margin-top: 2rem;
+    }
+
+    .chatbot-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 300px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border-radius: 15px;
+      box-shadow: 0 0 30px rgba(255, 123, 213, 0.4);
+      font-family: "Orbitron", sans-serif;
+      color: var(--text-light);
+      z-index: 1000;
+      overflow: hidden;
+    }
+
+    .chat-header {
+      background-color: var(--neon-pink);
+      color: #000;
+      padding: 12px;
+      font-weight: bold;
+      text-align: center;
+      cursor: pointer;
+      user-select: none;
+      font-size: 1rem;
+    }
+
+    .chat-body {
+      display: none;
+      padding: 10px;
+      max-height: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    #chat-log {
+      flex-grow: 1;
+      overflow-y: auto;
+      max-height: 200px;
+      padding-right: 5px;
+      font-size: 0.9rem;
+    }
+
+    .chat-message {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      padding: 8px;
+      margin-bottom: 6px;
+      word-wrap: break-word;
+    }
+
+    #chat-input {
+      border: none;
+      padding: 10px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.08);
+      color: white;
+      font-size: 0.9rem;
+      outline: none;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -37,8 +273,68 @@
     </div>
   </div>
 
+  <!-- Chatbot -->
+  <div class="chatbot-container" id="chatbot">
+    <div class="chat-header" onclick="toggleChat()">Ask Setubot</div>
+    <div class="chat-body" id="chat-body">
+      <div class="chat-log" id="chat-log"></div>
+      <input
+        type="text"
+        id="chat-input"
+        placeholder="Ask something..."
+        onkeydown="handleKey(event)"
+      />
+    </div>
+  </div>
+
   <footer>
     <p>© 2025 Suryasetu. Powered by solar energy & innovation.</p>
   </footer>
+
+  <script>
+    const responses = {
+      "hello": "Hello! I'm Setu bot, your solar assistant ☀️",
+      "hi": "Hi there! How can I help you with solar trading today?",
+      "what is suryasetu": "Suryasetu is a platform to trade excess solar energy using AI-powered automation.",
+      "how to sell energy": "Just register and list your surplus solar units on the marketplace!",
+      "how to buy energy": "Browse the marketplace and purchase available solar energy from nearby sellers.",
+      "what is battery store": "You can visit the Battery Store from the main navigation to explore storage options.",
+      "Who are you": "I'm Setu bot, the virtual assistant of the Suryasetu platform ☀️",
+      "help": "You can ask me basic questions like how to buy/sell energy or what Suryasetu is!",
+      "How does Suryasetu benefit users":""
+      
+    };
+
+    function toggleChat() {
+      const body = document.getElementById("chat-body");
+      body.style.display = body.style.display === "flex" ? "none" : "flex";
+    }
+
+    function handleKey(event) {
+      if (event.key === "Enter") {
+        const input = document.getElementById("chat-input");
+        const message = input.value.trim().toLowerCase();
+        if (message) {
+          addMessage("You", message);
+          respond(message);
+          input.value = "";
+        }
+      }
+    }
+
+    function addMessage(sender, message) {
+      const log = document.getElementById("chat-log");
+      const div = document.createElement("div");
+      div.className = "chat-message";
+      div.innerHTML = `<strong>${sender}:</strong> ${message}`;
+      log.appendChild(div);
+      log.scrollTop = log.scrollHeight;
+    }
+
+    function respond(message) {
+      const reply = responses[message] || "Sorry, this feature is under development. 🚧";
+      setTimeout(() => addMessage("Setubot", reply), 400);
+    }
+  </script>
 </body>
 </html>
