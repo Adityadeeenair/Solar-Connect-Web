@@ -49,9 +49,9 @@ Built to enable **trustless and resilient energy exchanges** without a centraliz
 
 ## 🚀 Built With
 
-- Modern Web Technologies (React, Node.js, etc.)  
+- Modern Web Technologies (html, css, javascript, etc.)  
 - Real-time database and cloud infrastructure  
-- Transparent ledger for credit tracking (e.g., blockchain, smart contracts)
+- Transparent ledger for credit tracking (e.g., blockchain, smart contracts)----> Future Plans
 
 ---
 
