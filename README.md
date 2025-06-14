@@ -39,13 +39,13 @@ Built to enable **trustless and resilient energy exchanges** without a centraliz
 
 ## 👥 Who Is It For?
 
-### Solar Panel Owners
+### Solar Panel Owners :
 Share or sell surplus energy within your community.
 
-### Non-Solar Users
+### Non-Solar Users :
 Access clean, affordable energy without installing panels.
 
-### Apartments & Communities
+### Apartments & Communities :
 Build local, sustainable energy-sharing networks.
 
 
