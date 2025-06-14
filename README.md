@@ -39,11 +39,15 @@ Built to enable **trustless and resilient energy exchanges** without a centraliz
 
 ## 👥 Who Is It For?
 
-- **Solar Panel Owners**  
-  Easily share or sell your **surplus solar power** to others.
+-Solar Panel Owners
+Share or sell surplus energy within your community.
 
-- **Energy Seekers**  
-  Access **clean, affordable, and locally-sourced energy** without installing panels.
+-Non-Solar Users
+Access clean, affordable energy without installing panels.
+
+-Apartments & Communities
+Build local, sustainable energy-sharing networks.
+
 
 ---
 
